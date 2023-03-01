@@ -8,7 +8,7 @@ echo '{}' | cfssl gencert -ca=nomad-ca.pem -ca-key=nomad-ca-key.pem -config=cfss
 echo '{}' | cfssl gencert -ca=nomad-ca.pem -ca-key=nomad-ca-key.pem -config=cfssl.json -hostname="client.global.nomad,localhost,127.0.0.1" - | cfssljson -bare client
 echo '{}' | cfssl gencert -ca=nomad-ca.pem -ca-key=nomad-ca-key.pem -profile=client - | cfssljson -bare cli
 
-# Later copy generated files into "files" subfolder in the ansible-role-client-certificates and ansible-role-derver-certificates. The plan is to automate this task in the future as the ansible ready tasks too.
+# Later copy generated files into "files" subfolder in the ansible-role-client-certificates and ansible-role-server-certificates. The plan is to automate this task in the future as the ansible ready tasks too.
 
 # Other stuff is pretty the same for all ansible tasks. Edit the inventory file and replace the ip and keys with your own and execute the deploymet by:
 ansible-playbook playbook.yml -i inventory
