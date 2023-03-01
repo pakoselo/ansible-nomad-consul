@@ -1,0 +1,19 @@
+datacenter = "dc1"
+
+client {
+    enabled = true
+    network_interface = "eth0"
+}
+
+# Require TLS
+tls {
+  http = true
+  rpc  = true
+
+  ca_file   = "{{ nomad_config_dir }}/certificates/nomad-ca.pem"
+  cert_file = "{{ nomad_config_dir }}/certificates/client.pem"
+  key_file  = "{{ nomad_config_dir }}/certificates/client-key.pem"
+
+  verify_server_hostname = true
+  verify_https_client    = true
+}

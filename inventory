@@ -1,0 +1,15 @@
+# Cloud hosts
+node1 ansible_user=cloud-user ansible_ssh_host=147.213.76.170 ansible_ssh_private_key_file='~/.ssh/id_rsa_cloud' ansible_ssh_common_args='-o StrictHostKeyChecking=no' consul_bootstrap=true
+node2 ansible_user=cloud-user ansible_ssh_host=147.213.76.168 ansible_ssh_private_key_file='~/.ssh/id_rsa_cloud' ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+node3 ansible_user=cloud-user ansible_ssh_host=147.213.76.199 ansible_ssh_private_key_file='~/.ssh/id_rsa_cloud' ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+
+[server]
+node1
+
+[client]
+node2
+node3
+
+[client:vars]
+nomad_client=true
+nomad_server=false

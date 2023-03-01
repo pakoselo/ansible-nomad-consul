@@ -1,0 +1,36 @@
+---
+
+- name: Create path for SSL cert
+  file: >
+    path={{ nomad_config_dir }}/certificates
+    owner={{ nomad_user }}
+    group={{ nomad_group }}
+    state=directory
+
+- name: Copy NOMAD CA to all nodes (server/clients)
+  ansible.builtin.copy: >
+    src=nomad-ca.pem
+    dest={{ nomad_config_dir }}/certificates/nomad-ca.pem
+    owner={{ nomad_user }}
+    group={{ nomad_group }}
+    mode=0644
+
+- name: Copy SERVER KEY to server
+  ansible.builtin.copy: >
+    src=server-key.pem
+    dest={{ nomad_config_dir }}/certificates/server-key.pem
+    owner={{ nomad_user }}
+    group={{ nomad_group }}
+    mode=0644
+
+- name: Copy SERVER PEM to server
+  ansible.builtin.copy: >
+    src=server.pem
+    dest={{ nomad_config_dir }}/certificates/server.pem
+    owner={{ nomad_user }}
+    group={{ nomad_group }}
+    mode=0644
+  notify: restart nomad
+
+#- name: Ensure Nomad service is started and enabled on boot
+#  service: name={{ nomad_service_name }} state=started enabled=yes

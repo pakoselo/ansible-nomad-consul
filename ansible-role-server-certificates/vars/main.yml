@@ -1,0 +1,6 @@
+---
+
+nomad_config_dir: /var/lib/nomad/conf
+nomad_user: nomad
+nomad_group: nomad
+nomad_service_name: nomad
